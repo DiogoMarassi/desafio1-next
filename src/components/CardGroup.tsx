@@ -19,7 +19,7 @@ export function CardGroup({
   title,
   cards,
   editable = false,
-  add=false,
+  add = false,
   onEdit,
   onRemove,
 }: CardGroupProps) {
@@ -50,14 +50,14 @@ export function CardGroup({
       <div className="flex flex-row justify-around items-center border-b pb-5">
         <h2 className="font-bold text-2xl text-gray-800 text-center">{title}</h2>
         <button
-        onClick={() => {
+          onClick={() => {
             if (title.includes('Alimento')) handleNovoAlimento();
             else if (title.includes('Prato')) handleNovoPrato();
             else if (title.includes('Usuário')) handleNovoUsuario();
-        }}
-        className="px-3 py-2 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors"
+          }}
+          className="px-3 py-2 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors"
         >
-        Adicionar
+          Adicionar
         </button>
       </div>
       <ul className="space-y-3">
@@ -72,7 +72,7 @@ export function CardGroup({
               {editable && (
 
                 <div className="flex gap-2">
-                  
+
                   <button
                     onClick={() => onEdit && onEdit(card.id)}
                     className="px-2 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors"
@@ -116,7 +116,7 @@ export function CardGroup({
               )}
             </div>
 
-            { title === "Pratos Autorizados" && card.alimentos && card.alimentos.length > 0 && (
+            {title === "Pratos Autorizados" && card.alimentos && card.alimentos.length > 0 && (
               <div className="mt-2 space-y-1">
                 {card.alimentos.map((alimento: any) => (
                   <CardExpansivo

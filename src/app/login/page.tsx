@@ -1,13 +1,11 @@
-// src/app/login/page.tsx
 'use client';
-
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 
 export default function LoginPage() {
   const router = useRouter()
-  
+
   // useState cria variáveis "reativas"
   // [email, setEmail]: email é o valor atual, setEmail muda o valor e re-renderiza o componente
   const [email, setEmail] = useState('')

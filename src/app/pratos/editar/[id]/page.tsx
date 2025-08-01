@@ -14,41 +14,41 @@ export default function EditarPratoPage() {
   const [token, setToken] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
 
-    useEffect(() => {
-      const savedToken = localStorage.getItem('token');
-      const savedRole = localStorage.getItem('role');
+  useEffect(() => {
+    const savedToken = localStorage.getItem('token');
+    const savedRole = localStorage.getItem('role');
 
-      if (savedToken) {
-        setToken(savedToken);
-        setRole(savedRole);
-  
-        // Decodifica o JWT
-        const [, payloadBase64] = savedToken.split('.');
+    if (savedToken) {
+      setToken(savedToken);
+      setRole(savedRole);
 
-      }
-    }, []);
+      // Decodifica o JWT
+      const [, payloadBase64] = savedToken.split('.');
 
-    function handleAddAlimento(idAlimento: number) {
-      if (!prato) return;
-      const alimento = alimentos.find((a) => a.id === idAlimento);
-      if (!alimento) return;
-
-      setPrato({
-        ...prato,
-        alimentos: [...(prato.alimentos || []), alimento],
-      });
     }
+  }, []);
 
-    function handleRemoveAlimento(idAlimento: number) {
-      if (!prato) return;
+  function handleAddAlimento(idAlimento: number) {
+    if (!prato) return;
+    const alimento = alimentos.find((a) => a.id === idAlimento);
+    if (!alimento) return;
 
-      setPrato({
-        ...prato,
-        alimentos: (prato.alimentos || []).filter((a) => a.id !== idAlimento),
-      });
-    }
-    useEffect(() => {
-      if (!token) return;
+    setPrato({
+      ...prato,
+      alimentos: [...(prato.alimentos || []), alimento],
+    });
+  }
+
+  function handleRemoveAlimento(idAlimento: number) {
+    if (!prato) return;
+
+    setPrato({
+      ...prato,
+      alimentos: (prato.alimentos || []).filter((a) => a.id !== idAlimento),
+    });
+  }
+  useEffect(() => {
+    if (!token) return;
     async function fetchAlimentos() {
       try {
         const response = await fetch('http://localhost:2000/api/alimentos', {

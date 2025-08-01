@@ -24,7 +24,7 @@ export default function EditarAlimentoPage() {
         if (!response.ok) throw new Error('Erro ao buscar alimento');
 
         const data = await response.json();
-        setAlimento(data); 
+        setAlimento(data);
       } catch (error) {
         console.error(error);
         alert('Não foi possível carregar o alimento.');

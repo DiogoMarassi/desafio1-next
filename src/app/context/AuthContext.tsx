@@ -1,4 +1,3 @@
-// src/context/AuthContext.tsx
 'use client';
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
@@ -13,15 +12,6 @@ interface AuthContextProps {
 // Um Context em React é como uma variável global que pode ser usada por qualquer componente da aplicação — sem precisar passar props manualmente em cada nível.
 // "Prop" vem de “property” e é como um componente React recebe informações externas.
 // Uso de uma Prop:
-/*
-function Saudacao({ nome }: { nome: string }) {
-  return <h1>Olá, {nome}</h1>
-}
-
-// uso:
-<Saudacao nome="Diogo" />
-*/
-
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
@@ -50,7 +40,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const role: UserRole = payload.cargo;
 
       setUser({ role, token });
-      localStorage.setItem('token', token); // opcional: salvar token
+      localStorage.setItem('token', token);
       router.push('/dashboard');
     } catch (error) {
       console.error('Erro ao fazer login:', error);

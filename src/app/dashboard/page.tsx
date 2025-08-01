@@ -8,7 +8,7 @@ interface JwtPayload {
   id: number;
   email: string;
   cargo: string;
-  nome?: string; 
+  nome?: string;
 }
 
 export default function Dashboard() {
@@ -70,7 +70,7 @@ export default function Dashboard() {
     setPratosAutorizados((prev) => prev.filter((p) => p.id !== id));
   }
 
-    async function handleRemoveusuario(id: number) {
+  async function handleRemoveusuario(id: number) {
     const confirmDelete = confirm('Deseja realmente remover este usuário?');
     if (!confirmDelete) return;
     await fetch(`http://localhost:2000/api/usuarios/${id}`, {
@@ -98,7 +98,7 @@ export default function Dashboard() {
         );
 
         if (!response.ok) {
-          setPratosAutorizados([]); 
+          setPratosAutorizados([]);
           return;
         }
 
@@ -116,7 +116,7 @@ export default function Dashboard() {
         setPratosAutorizados(ativos);
       } catch (error) {
         console.error('Erro ao carregar pratos autorizados:', error);
-        setPratosAutorizados([]); 
+        setPratosAutorizados([]);
       }
     }
 
@@ -165,7 +165,7 @@ export default function Dashboard() {
 
   if (!token) {
     return (
-      
+
       <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
         <div className="bg-white p-8 rounded-xl shadow-lg text-center max-w-md w-full">
@@ -207,7 +207,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-100 flex items-start justify-center py-10 px-6">
       <div>
         <h1 className="text-2xl font-bold mb-6 text-black flex">
-            Bem-vindo {nomeUsuario}
+          Bem-vindo {nomeUsuario}
         </h1>
         <div className="flex flex-wrap justify-center gap-6 max-w-7xl w-full">
           <CardGroup
@@ -218,7 +218,7 @@ export default function Dashboard() {
             onEdit={(id) => router.push(`/alimentos/editar/${id}`)}
             onRemove={handleRemoveAlimento}
           />
-        
+
           <CardGroup
             title="Pratos Autorizados"
             cards={pratosCards}

@@ -11,54 +11,54 @@ export default function EditarPratoPage() {
 
   const router = useRouter();
   const [prato, setPrato] = useState<Prato>({
-  id: 0, // Pode ser ignorado no POST
-  nome: '',
-  preco: '',
-  data_lancamento: '',
-  custo: 0,
-  ativo: true,
-  alimentos: [],
+    id: 0, // Pode ser ignorado no POST
+    nome: '',
+    preco: '',
+    data_lancamento: '',
+    custo: 0,
+    ativo: true,
+    alimentos: [],
   });
 
   const [alimentos, setAlimentos] = useState<Alimento[]>([]);
   const [token, setToken] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
 
-    useEffect(() => {
-      const savedToken = localStorage.getItem('token');
-      const savedRole = localStorage.getItem('role');
+  useEffect(() => {
+    const savedToken = localStorage.getItem('token');
+    const savedRole = localStorage.getItem('role');
 
-      if (savedToken) {
-        setToken(savedToken);
-        setRole(savedRole);
-  
-        // Decodifica o JWT
-        const [, payloadBase64] = savedToken.split('.');
+    if (savedToken) {
+      setToken(savedToken);
+      setRole(savedRole);
 
-      }
-    }, []);
+      // Decodifica o JWT
+      const [, payloadBase64] = savedToken.split('.');
 
-    function handleAddAlimento(idAlimento: number) {
-      if (!prato) return;
-      const alimento = alimentos.find((a) => a.id === idAlimento);
-      if (!alimento) return;
-
-      setPrato({
-        ...prato,
-        alimentos: [...(prato.alimentos || []), alimento],
-      });
     }
+  }, []);
 
-    function handleRemoveAlimento(idAlimento: number) {
-      if (!prato) return;
+  function handleAddAlimento(idAlimento: number) {
+    if (!prato) return;
+    const alimento = alimentos.find((a) => a.id === idAlimento);
+    if (!alimento) return;
 
-      setPrato({
-        ...prato,
-        alimentos: (prato.alimentos || []).filter((a) => a.id !== idAlimento),
-      });
-    }
-    useEffect(() => {
-      if (!token) return;
+    setPrato({
+      ...prato,
+      alimentos: [...(prato.alimentos || []), alimento],
+    });
+  }
+
+  function handleRemoveAlimento(idAlimento: number) {
+    if (!prato) return;
+
+    setPrato({
+      ...prato,
+      alimentos: (prato.alimentos || []).filter((a) => a.id !== idAlimento),
+    });
+  }
+  useEffect(() => {
+    if (!token) return;
     async function fetchAlimentos() {
       try {
         const response = await fetch('http://localhost:2000/api/alimentos', {
@@ -114,10 +114,10 @@ export default function EditarPratoPage() {
 
     const payload = {
       nome: prato.nome,
-      preco: parseFloat(prato.preco),              
+      preco: parseFloat(prato.preco),
       data_lancamento: prato.data_lancamento.split('T')[0], // só data
-      custo: Number(prato.custo),                 
-      alimentos: prato.alimentos.map(a => a.id), 
+      custo: Number(prato.custo),
+      alimentos: prato.alimentos.map(a => a.id),
     };
     try {
       const response = await fetch(`http://localhost:2000/api/pratos/`, {

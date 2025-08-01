@@ -122,7 +122,7 @@ export default function EditarUsuarioPage() {
     }
   }
 
-  /** Salvar alterações do usuário */
+  /** Salva alterações do usuário */
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!usuario || !token) return;
