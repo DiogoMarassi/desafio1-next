@@ -207,7 +207,6 @@ export default function EditarUsuarioPage() {
         add={true}
         onEdit={handleAddPrato}
         onRemove={handleRemovePrato}
-        associados={associados} // <--- passe para o CardGroup controlar Add/Remove
       />
     </div>
   );
